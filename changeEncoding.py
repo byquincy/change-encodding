@@ -41,8 +41,12 @@ if __name__ == "__main__":
 
     errorFile = []
     for filePath in tqdm(file_list):
-        if convert_encoding(filePath) == -1:
-            errorFile.append(filePath)
+        try:
+            if convert_encoding(filePath) == -1:
+                errorFile.append(filePath)
+        except Exception as e:
+            print(e)
+
 
     print("\nEncode Success. %d File Failed"%len(errorFile))
     for filePath in errorFile:
